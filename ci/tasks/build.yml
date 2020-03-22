@@ -10,5 +10,8 @@ inputs:
     - name: subject
     - name: master-pipeline
 
+outputs:
+- name: site
+
 run:
   path: ./master-pipeline/ci/tasks/build.sh

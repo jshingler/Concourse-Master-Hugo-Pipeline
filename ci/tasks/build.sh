@@ -29,28 +29,7 @@ echo "Build"
 echo "============================================="
 cd subject
 hugo
-
-# Build
-# =============================================
-echo ""
-echo "Build"
-echo "============================================="
-echo "-- Checking for Build Type (Gradlew/mvnw)"
-if [ -x subject/gradlew ]
-then
-   echo "-- Found Gradle Build"
-   cd subject
-   ./gradlew build
-   cd ..
-elif [ -x subject/mvnw ]
-then
-    echo "-- Found Maven Build"
-    cd subject
-    ./mvnw test
-    cd ..
-else
-    echo "-- GradleW and MvnW not found Nothing to Build"
-fi
+cd ..
 
 # Post-Build
 # =============================================
@@ -64,3 +43,9 @@ then
 else
     echo "-- Nothing to execute"
 fi
+
+# Move Static Site
+# =============================================
+pwd
+cp -r subject/public site
+ls -lR
