@@ -48,4 +48,6 @@ fi
 # =============================================
 pwd
 cp -r subject/public site
+# cp the Cloud Foundry manifest file
+# cp -r manifest.yml site
 ls -lR
