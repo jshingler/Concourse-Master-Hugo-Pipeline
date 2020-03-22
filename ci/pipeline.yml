@@ -1,0 +1,19 @@
+---
+resources:
+  - name: master-pipeline
+    type: git
+    source:
+      uri: https://github.com/jshingler/Concourse-Master-Hugo-Pipeline.git
+  - name: subject
+    type: git
+    source:
+      uri: https://github.com/jshingler/((subject)).git
+
+jobs:
+  - name: build
+    public: true
+    plan:
+      - get: master-pipeline
+      - get: subject
+      - task: build
+        file: master-pipeline/ci/tasks/build.yml
