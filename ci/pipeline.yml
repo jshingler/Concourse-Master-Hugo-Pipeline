@@ -35,6 +35,8 @@ jobs:
         resource: cf-env
         params:
           command: push
+          org: cfdev-org
+          space: cfdev-space
           app_name: jshingler
           memory: 256M
           path: subject/public
