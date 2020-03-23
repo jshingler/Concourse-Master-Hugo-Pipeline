@@ -1,5 +1,19 @@
 ---
+resource_types:
+- name: cf-cli-resource
+  type: docker-image
+  source:
+    repository: nulldriver/cf-cli-resource
+    tag: latest
+
 resources:
+  - name: cf-env
+    type: cf-cli-resource
+    source:
+      api: https://api.dev.cfdev.sh
+      username: admin
+      password: admin
+      skip_cert_check: true
   - name: master-pipeline
     type: git
     source:
@@ -17,3 +31,12 @@ jobs:
       - get: subject
       - task: build
         file: master-pipeline/ci/tasks/build.yml
+      - put: cf-push
+        resource: cf-env
+        params:
+          command: push
+          app_name: jshingler
+          memory: 256M
+          path: subject/public
+          buildpack: staticfile_buildpack
+          manifest: subject/manifest.yml
